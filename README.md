@@ -1,7 +1,5 @@
 # O que é DevOps?
 
-DevOps não é ferramenta. Não é cargo. Não é framework mágico.
-
 DevOps junta desenvolvimento e infraestrutura para que o software seja entregue rápido, com qualidade e sem dor de cabeça.
 
 Na prática, significa:
@@ -14,7 +12,7 @@ Na prática, significa:
 
 # E o que é SRE?
 
-SRE (Site Reliability Engineering) é como se fosse a versão “engenharia hardcore” do DevOps.
+SRE (Site Reliability Engineering) é como se fosse a versão “engenharia hardcore” do DevOps
 
 Foi criado dentro da Google com uma ideia simples:
 Se dá para automatizar, automatiza.
