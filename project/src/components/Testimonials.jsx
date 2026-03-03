@@ -4,13 +4,13 @@ function Testimonials() {
   const testimonials = [
     {
       name: 'Maria Silva',
-      role: 'Tech Lead - Empresa X',
+      role: 'Tech Lead - Empresa Popopen',
       text: 'Com DevOps, reduzimos o tempo de deploy de dias para minutos. A automação transformou nossa entrega.',
       avatar: 'MS'
     },
     {
       name: 'João Santos',
-      role: 'DevOps Engineer - Startup Y',
+      role: 'DevOps Engineer - Startup HyperTech',
       text: 'A cultura DevOps trouxe colaboração entre times. Agora desenvolvemos e entregamos com muito mais confiança.',
       avatar: 'JS'
     },

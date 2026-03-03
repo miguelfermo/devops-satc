@@ -9,7 +9,7 @@ function Hero() {
         </h1>
         <p className="hero-subtitle">
           Entregue software rápido, com qualidade e eficiência. 
-          Una desenvolvimento e infraestrutura em uma filosofia poderosa.
+          Um desenvolvimento e infraestrutura em uma filosofia poderosa.
         </p>
         <div className="hero-buttons">
           <button className="btn-primary">Começar Agora</button>
