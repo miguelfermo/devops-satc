@@ -1,32 +1,60 @@
-# O que é DevOps?
 
-DevOps junta desenvolvimento e infraestrutura para que o software seja entregue rápido, com qualidade e sem dor de cabeça.
+# DevOps Landing Page - React
 
-Na prática, significa:
+Um projeto de landing page moderna sobre DevOps, desenvolvida com React.
 
-- Automatizar build e deploy
-- Testar antes de subir para produção
-- Monitorar depois que sobe
-- Resolver problema rápido
-- Melhorar continuamente
+## 🚀 Início Rápido
 
-# E o que é SRE?
+### Pré-requisitos
+- Node.js 16+
+- npm ou yarn
 
-SRE (Site Reliability Engineering) é como se fosse a versão “engenharia hardcore” do DevOps
+### Instalação
 
-Foi criado dentro da Google com uma ideia simples:
-Se dá para automatizar, automatiza.
-Se dá para medir, mede.
-Se não está confiável, não escala.
+```bash
+git clone <repositorio>
+cd devops-satc
+npm install
+```
 
-Enquanto DevOps fala muito de cultura, SRE fala muito de métrica, confiabilidade e disciplina técnica.
+### Desenvolvimento
 
-A diferença de forma simples
+```bash
+npm start
+```
 
-DevOps diz:
+Acessa em `http://localhost:3000`
 
-Vamos entregar rápido e trabalhar juntos.
+## 📁 Estrutura do Projeto
 
-SRE diz:
+```
+src/
+├── components/
+├── pages/
+├── styles/
+└── App.jsx
+```
 
-Vamos entregar rápido, mas com meta clara de confiabilidade. E se passar do limite de erro, a gente para de criar feature e conserta o sistema.
+## 🛠️ Tecnologias
+
+- **React** - Interface de usuário
+- **CSS/Tailwind** - Estilização
+- **Vite** (opcional) - Build tool
+
+## 📦 Build
+
+```bash
+npm run build
+```
+
+## 📝 Funcionalidades
+
+- Hero section com call-to-action
+- Seção sobre princípios DevOps
+- Depoimentos e casos de uso
+- Formulário de contato
+- Responsivo para mobile
+
+## 📄 Licença
+
+MIT
