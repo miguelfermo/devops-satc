@@ -1,11 +1,10 @@
 FROM node:20-alpine
 
-WORKDIR /project
+WORKDIR /app
 
 COPY . .
 
-RUN ls
-RUN cd /project
+WORKDIR /app/project
 RUN npm install
 
 RUN npm run build
