@@ -4,7 +4,8 @@ WORKDIR /project
 
 COPY . .
 
-RUN ls -la
+RUN ls
+RUN cd /project
 RUN npm install
 
 RUN npm run build
