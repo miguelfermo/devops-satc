@@ -19,7 +19,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=miguelfermo_devops-satc
-            -Dsonar.organization=miguel087705
+            -Dsonar.organization=miguelfermo087705
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.sources=.
         env:
