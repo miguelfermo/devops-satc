@@ -27,3 +27,62 @@ jobs:
 
             - name: Push to Docker Hub
               run: docker push docker.io/miguelfermo/devops-satc:0.0.1
+
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@v2
+              with:
+                args: >
+                  -Dsonar.projectKey=miguelfermo_devops-satc
+                  -Dsonar.organization=miguelfermo087705
+                  -Dsonar.host.url=https://sonarcloud.io
+                  -Dsonar.sources=.
+              env:
+                GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+            - name: Run Trivy vulnerability scanner
+              uses: aquasecurity/trivy-action@master
+              with:
+                scan-type: 'image'
+                image-ref: 'docker.io/miguelfermo/devops-satc:0.0.1'
+                format: json
+                output: trivy-results.json
+                severity: MEDIUM,HIGH,CRITICAL
+
+            - name: Upload Trivy results as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: trivy-results.json
+                path: trivy-results.json
+
+            - name: Analyze Trivy results
+              run: |
+                if [ -f trivy-results.json ]; then
+                  VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' trivy-results.json)
+                  echo "Quantidade de vulnerabilidades médias: $VULN_COUNT"
+
+                  if [ "$VULN_COUNT" -gt 2 ]; then
+                    echo "Pipeline bloqueada: mais de 2 vulnerabilidades médias encontradas."
+                    exit 1
+                  fi
+                else
+                  echo "Arquivo de resultados do Trivy não encontrado."
+                  exit 1
+                fi
+
+            - name: Falhar se houver mais de 2 vulnerabilidades médias
+              run: |
+                COUNT=$(curl -s -u "${SONAR_TOKEN}:" \
+                  "https://sonarcloud.io/api/issues/search?componentKeys=${SONAR_PROJECT_KEY}&types=VULNERABILITY&severities=MAJOR&resolved=false&ps=1" \
+                  | jq '.total')
+
+                echo "Quantidade de vulnerabilidades médias: $COUNT"
+
+                if [ "$COUNT" -gt 2 ]; then
+                  echo "Pipeline bloqueada: mais de 2 vulnerabilidades médias encontradas."
+                  exit 1
+                fi
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_HOST_URL: https://sonarcloud.io
+                SONAR_PROJECT_KEY: miguelfermo_devops-satc
