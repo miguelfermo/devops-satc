@@ -23,3 +23,6 @@ jobs:
 
             - name: build
               run: docker build -t miguelfermo/devops-satc:0.0.1 .
+
+            - name: Push to Docker Hub
+              run: docker push miguelfermo/devops-satc:0.0.1
