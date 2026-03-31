@@ -21,6 +21,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Disable SonarCloud Automatic Analysis (best effort)
+        run: |
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -u "${SONAR_TOKEN}:" -X POST \
+            "https://sonarcloud.io/api/autoscan/activation?enable=false&projectKey=miguelfermo_devops-satc")
+
+          BODY=$(echo "$RESPONSE" | head -n -1)
+          STATUS=$(echo "$RESPONSE" | tail -n 1)
+
+          echo "SonarCloud autoscan disable status: $STATUS"
+          if [ "$STATUS" -ge 400 ]; then
+            echo "Aviso: não foi possível desativar Automatic Analysis via API."
+            echo "Resposta: $BODY"
+            echo "Se o próximo passo falhar, desative manualmente em SonarCloud > Project Settings > Analysis Method."
+          fi
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         with:
