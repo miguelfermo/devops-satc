@@ -53,7 +53,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          image-ref: 'docker.io/miguelfermo/devops-satc:0.0.2'
+          image-ref: 'docker.io/miguelfermo/devops-satc:0.0.1'
           format: json
           output: trivy-results.json
           severity: MEDIUM,HIGH,CRITICAL
